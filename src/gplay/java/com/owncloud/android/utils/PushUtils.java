@@ -156,7 +156,7 @@ public class PushUtils {
                 if (!TextUtils.isEmpty(arbitraryValue = arbitraryDataProvider.getValue(account, KEY_PUSH))) {
                     Gson gson = new Gson();
                     PushConfigurationState pushArbitraryData = gson.fromJson(arbitraryValue,
-                            PushArbitraryData.class);
+                            PushConfigurationState.class);
                     RemoteOperation unregisterAccountDeviceForProxyOperation =
                             new UnregisterAccountDeviceForProxyOperation(context.getResources().
                                     getString(R.string.push_server_url),
@@ -236,7 +236,7 @@ public class PushUtils {
                                         PushConfigurationState pushArbitraryData = new PushConfigurationState(token,
                                                 pushResponse.getDeviceIdentifier(), pushResponse.getSignature(),
                                                 pushResponse.getPublicKey(), false);
-                                        arbitraryDataProvider.storeOrUpdateKeyValue(account, KEY_PUSH,
+                                        arbitraryDataProvider.storeOrUpdateKeyValue(account.name, KEY_PUSH,
                                                 gson.toJson(pushArbitraryData));
                                     }
                                 }
